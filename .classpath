@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="windows32/|windows32/" kind="src" path="src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BurbersGround/imports/windows32"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src/windows32"/>
+	<classpathentry kind="src" path="Mavlink"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="src/core.jar"/>
+	<classpathentry kind="lib" path="imports/jssc.jar"/>
+	<classpathentry kind="lib" path="imports/controlP5.jar"/>
+	<classpathentry kind="lib" path="imports/serial.jar"/>
+	<classpathentry kind="lib" path="src/lib/Arduino.jar"/>
+	<classpathentry kind="lib" path="imports/procontroll.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="BurbersGround/src/windows32"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
