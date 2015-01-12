@@ -30,6 +30,7 @@ public class MainGround extends PApplet {
   Serial arduino;
   String value; // Value from raw serial read
   PFont font;
+  MAVLinkPacket packet;
   PanelTop paneltop= new PanelTop(this);
   PanelMotors panelmotors = new PanelMotors(10, 90, 150, 150, this);
   PanelStabilizationX panelstabilizationX;
@@ -53,7 +54,7 @@ public class MainGround extends PApplet {
 	cp5 = new ControlP5(this);
 	controllIO = ControllIO.getInstance(this);
 	mavLinkParser = new Parser();
-	mavLinkParser.state = MAV_states.MAVLINK_PARSE_STATE_IDLE;
+	//mavLinkParser.state = MAV_states.MAVLINK_PARSE_STATE_IDLE;
 	
 	console = new Console(this);
 	commands = new ArrayList<String>();
@@ -116,7 +117,7 @@ public class MainGround extends PApplet {
 	  
 	  // Revieve radio contact
 	  if(arduino.available()>0) {
-		  MAVLinkPacket packet;
+		  
 		  int charTest = arduino.readChar();
 		  System.out.println("GOT CHAR:" + charTest);
 		  packet = mavLinkParser.mavlink_parse_char(charTest);

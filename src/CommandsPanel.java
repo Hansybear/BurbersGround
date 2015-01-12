@@ -153,10 +153,13 @@ public class CommandsPanel extends Panel {
 		heartBeat.base_mode = MAV_MODE_FLAG.MAV_MODE_FLAG_TEST_ENABLED;
 		MAVLinkPacket mavPacket = heartBeat.pack();
 		byte[] heartBeatDebug = mavPacket.encodePacket();
+		String str = "";
 		try {
-			String str = new String(heartBeatDebug, "UTF-8");
+			for(int i=0; i<heartBeatDebug.length; i++) {
+				str += "|" + Integer.toString(heartBeatDebug[i]);
+			}
 			System.out.println("MAVLINK SEND SUCCESS: " + str);
-		} catch (UnsupportedEncodingException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("ENCODING-ERROR (MAVLINK)");
 			e.printStackTrace();
@@ -174,6 +177,7 @@ public class CommandsPanel extends Panel {
 				System.out.println("RadioStatus");
 				msg_radio_status radioStatus = new msg_radio_status(packet);
 				radioSettings.connectRadio(radioStatus);
+				break;
 		}
 		
 	}
