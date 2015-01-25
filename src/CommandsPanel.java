@@ -69,7 +69,9 @@ public class CommandsPanel extends Panel {
 	@Override
 	public void drawPanel() {
 		// Update position
-		panelXPos = parent.width-parent.avionicsPanel.panelWidth-2*panelMargin-panelWidth;
+		// Old position
+		//panelXPos = parent.width-parent.avionicsPanel.panelWidth-2*panelMargin-panelWidth;
+		panelXPos = panelMargin;
 		radioSettings.panelYPos = panelYPos+commandsPartHeight+panelMargin;
 		
 		// Draw background
@@ -180,6 +182,10 @@ public class CommandsPanel extends Panel {
 				break;
 		}
 		
+	}
+	
+	public void updateRadioMessage(MAVLinkPacket m) {
+		radioSettings.updateRadioMessage(m);
 	}
 	
 	

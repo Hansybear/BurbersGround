@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import com.MAVLink.MAVLinkPacket;
 import com.MAVLink.common.msg_radio_status;
 
 import processing.core.PApplet;
@@ -17,6 +18,7 @@ public class TabbedRadioPanel extends Panel {
 	public int backGround;
 	public RadioPanel radioConnectionTab;
 	public RadioConfigPanel radioConfigTab;
+	public RadioMessageDebugPanel radioMessageTab;
 	public int tabsPartHeight = 300;
 	
 	public TabbedRadioPanel(String name, int x, int y, int width, int height, MainGround p, Panel panelParent) {
@@ -25,9 +27,11 @@ public class TabbedRadioPanel extends Panel {
 		// Initialize radio tabs
 		radioConnectionTab = new RadioPanel("Connection", panelXPos+panelMargin, panelYPos+panelMenuHeight, panelWidth-2*panelMargin, tabsPartHeight, p, p.cp5);
 		radioConfigTab = new RadioConfigPanel("Configuration", panelXPos+panelMargin, panelYPos+panelMenuHeight, panelWidth-2*panelMargin, height, p, p.cp5);
+		radioMessageTab = new RadioMessageDebugPanel("Debug", panelXPos+panelMargin, panelYPos+panelMenuHeight, panelWidth-2*panelMargin, height, p, p.cp5);
 		tabs = new ArrayList<PanelTab>();
 		tabs.add(radioConnectionTab);
 		tabs.add(radioConfigTab);
+		tabs.add(radioMessageTab);
 		
 		this.parentPanel = panelParent;
 		tabsHeight = 30;
@@ -103,6 +107,10 @@ public class TabbedRadioPanel extends Panel {
 	public void connectRadio(msg_radio_status responseMessage) {
 		radioConnectionTab.setRadioStatus(responseMessage);
 		radioConnectionTab.setConnected(true);
+	}
+	
+	public void updateRadioMessage(MAVLinkPacket m) {
+		radioMessageTab.updateRadioMessage(m);
 	}
 	
 	public void mousePressed() {

@@ -123,5 +123,9 @@ public class Parser {
 			return null;
 		}
 	}
+	
+	public MAVLinkPacket getPacket() {
+		return m;
+	}
 
 }

@@ -32,12 +32,14 @@ public class MainGround extends PApplet {
   PFont font;
   MAVLinkPacket packet;
   PanelTop paneltop= new PanelTop(this);
-  PanelMotors panelmotors = new PanelMotors(10, 90, 150, 150, this);
+  //PanelMotors panelmotors = new PanelMotors(10, 90, 150, 150, this);
   PanelStabilizationX panelstabilizationX;
   GraphsPanel graphsPanel = new GraphsPanel("Graphs", 10, initialWindowHeight-300, this);
   CommandsPanel comms;
+  MessageSettingsPanel messageSettingsPanel;
   ControllIO controllIO;
   List<PanelTab> settingsPanelsRight;
+  List<PanelTab> messagePanels;
   JoyStickPanel joyStickPanel;
   
   TabbedPanel avionicsPanel;
@@ -59,6 +61,10 @@ public class MainGround extends PApplet {
 	console = new Console(this);
 	commands = new ArrayList<String>();
 	comms = new CommandsPanel("Commands", 10, 90, 300, 150, this, cp5);
+	
+	messagePanels = new ArrayList<PanelTab>();
+	
+	messageSettingsPanel = new MessageSettingsPanel("Message settings", 300, 30, 200, 600, this, null, messagePanels);
 	
 	panelstabilizationX = new PanelStabilizationX(this);
 	settingsPanelsRight = new ArrayList<PanelTab>();
@@ -104,7 +110,7 @@ public class MainGround extends PApplet {
 	  console.drawConsole();
 	  graphsPanel.drawPanel();
 	// Draw motor panel
-	  panelmotors.drawPanel();
+	  //panelmotors.drawPanel();
 	// Draw right side panel with settings
 	  avionicsPanel.drawPanel();
 	// Draw comms panel
@@ -113,7 +119,7 @@ public class MainGround extends PApplet {
 	  joyStickPanel.drawPanel();
 	  
 	// Draw stabilizationpanel X
-	  panelstabilizationX.drawPanelStabilizationX();
+	  //panelstabilizationX.drawPanelStabilizationX();
 	  
 	  // Revieve radio contact
 	  if(arduino.available()>0) {
@@ -121,6 +127,7 @@ public class MainGround extends PApplet {
 		  int charTest = arduino.readChar();
 		  System.out.println("GOT CHAR:" + charTest);
 		  packet = mavLinkParser.mavlink_parse_char(charTest);
+		  
 		  if(packet != null) {
 			  System.out.println(packet.toString());
 			  comms.handlePacket(packet);
@@ -135,7 +142,7 @@ public class MainGround extends PApplet {
   }
   
   
-  public void serialEvent (Serial arduino) {
+ /* public void serialEvent (Serial arduino) {
 	  if(useMAVLink) {
 
 		  // Doesnt work
@@ -144,7 +151,7 @@ public class MainGround extends PApplet {
 	  }else{
 		  
 	  
-	  /* Old way of reading data over USB */
+	  // Old way of reading data over USB
 	  int startOfMessage = -1;
 	  int endOfMessage = 0;
 	  //Read from Arduino
@@ -213,7 +220,7 @@ public class MainGround extends PApplet {
 	          }
 	        }
 	  }
-	}
+	}*/
   
 
 	public void mousePressed() {

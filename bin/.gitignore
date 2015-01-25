@@ -40,3 +40,9 @@
 /UIGroup.class
 /UIReadValue.class
 /UITextInputSetting.class
+/RadioMessageDebugPanel.class
+/RadioMessageDebugPanel$MAV_states.class
+/RadioMessageDebugPanel$connectionState.class
+/MemberSettingsPanel.class
+/UtilityMessageSettings.class
+/MessageSettingsPanel.class
