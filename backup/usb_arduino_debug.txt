@@ -1,0 +1,79 @@
+/* public void serialEvent (Serial arduino) {
+	  if(useMAVLink) {
+
+		  // Doesnt work
+		  
+		  
+	  }else{
+		  
+	  
+	  // Old way of reading data over USB
+	  int startOfMessage = -1;
+	  int endOfMessage = 0;
+	  //Read from Arduino
+	  value = arduino.readStringUntil('\n');
+	  if(value!=null) {
+	  String val2 = value.trim();
+	  // Write to the console first.
+	  console.textBuffer=val2;    
+	          
+	  // Process input from arduino correctly
+	  for(int j=0; j<val2.length(); j++) {
+		  if(val2.charAt(j)=='#') {
+		    if(startOfMessage != -1){
+		        endOfMessage = j;
+		     }else{
+		        startOfMessage = j; 
+		     }
+		   }else if(val2.charAt(j)=='<') {
+			   System.out.println("start at" + j);
+			   startOfMessage = j;
+		   }else if(val2.charAt(j)=='>') {
+			   System.out.println("end at" + j);
+			   endOfMessage = j;
+		   }
+	   }
+	          String messageToProc = "";
+	          if((startOfMessage > -1) && (endOfMessage >-1) && (endOfMessage>startOfMessage)) {
+	            messageToProc = val2.substring(startOfMessage+1, endOfMessage);
+	          }
+	          
+	          if(messageToProc.length()>0){
+	            if(messageToProc.substring(0, 2).equals("m1")) {
+	               String speed = messageToProc.substring(3, messageToProc.length());
+	               int intSpeed = parseInt(speed);
+	               panelmotors.setIndividualMotorSpeed(0, intSpeed);
+	            }else if(messageToProc.substring(0, 2).equals("m2")){
+	               String speed = messageToProc.substring(3, messageToProc.length());
+	               int intSpeed = parseInt(speed);
+	               panelmotors.setIndividualMotorSpeed(1, intSpeed);
+	            }else if(messageToProc.substring(0, 2).equals("xa")){
+	              // Angle used measurement (Complementary or kalman)
+	              String xAngle = messageToProc.substring(3, messageToProc.length());
+	              double doubleAngle = (double)parseFloat(xAngle);
+	              angleBuffer[0] = doubleAngle;
+	            }else if(messageToProc.substring(0, 2).equals("xg")) {
+	              // Gyro measurement
+	              String xGyro = messageToProc.substring(3, messageToProc.length());
+	              angleBuffer[1] = (double)parseFloat(xGyro);
+	            }else if(messageToProc.substring(0, 2).equals("xc")) {
+	              // Accelerometer measurement
+	              String xAcc = messageToProc.substring(3, messageToProc.length());
+	              angleBuffer[2] = (double)parseFloat(xAcc);
+	            }else if(messageToProc.substring(0, 2).equals("dx")) {
+	              String xAngleSpeed = messageToProc.substring(3, messageToProc.length());
+	              angleBuffer[3] = (double)parseFloat(xAngleSpeed);
+	              System.out.println("AngleSpeed from ardu:" + Double.toString(angleBuffer[3]));
+	            }
+	            
+	           panelstabilizationX.update( angleBuffer[0] , random(20), angleBuffer[1], angleBuffer[2], panelmotors.getIndividualMotorSpeed(0), panelmotors.getIndividualMotorSpeed(1));
+	           graphsPanel.update( angleBuffer[0] , angleBuffer[3], angleBuffer[1], angleBuffer[2], panelmotors.getIndividualMotorSpeed(0), panelmotors.getIndividualMotorSpeed(1));
+	            
+	          }
+	          
+	          if(val2.equals("#MODE#")) {
+	                paneltop.selectMode(true);
+	          }
+	        }
+	  }
+	}*/
