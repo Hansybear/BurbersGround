@@ -80,7 +80,7 @@ public class MainGround extends PApplet {
 	
 	panelstabilizationX = new PanelStabilizationX(this);
 	settingsPanelsRight = new ArrayList<PanelTab>();
-	settingsPanelsRight.add(new MPUSettingsPanel("MPU6050", this, 400, 400, 100, 100, cp5));
+	settingsPanelsRight.add(new MPUSettingsPanel("MPU6050", this, 400, 400, 400, 100, cp5));
 	settingsPanelsRight.add(new GY85SettingsPanel(this, cp5));
 	avionicsPanel = new TabbedPanel("Controls", 0, 90, 400, 800, this,null, settingsPanelsRight);
 	joyStickPanel = new JoyStickPanel("Flight Controller", 300, 90, 350, 450, this, 20,1);
@@ -94,8 +94,8 @@ public class MainGround extends PApplet {
 	  angleBuffer[3] = 0.0;
 	  
 	  // Prints out the available serial ports.
-	  arduino = new Serial(this, "COM3", 57600);
-	  arduino.bufferUntil('\n');
+	  /*arduino = new Serial(this, "COM3", 57600);
+	  arduino.bufferUntil('\n');*/
 	  
 	  for(int k = 0; k<Serial.list().length; k++) {
 		  System.out.println(Serial.list()[k]);

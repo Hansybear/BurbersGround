@@ -22,8 +22,8 @@ public class GraphsPanel extends Panel {
 		
 		// GY-85 x-direction histogram
 		ArrayList<HistoryData> gy85x = new ArrayList<HistoryData>();
-		gy85x.add(new HistoryData("Filtered X-angle", 100, parent.color(121, 242, 149)));
-		gy85x.add(new HistoryData("Acc X-angle", 100, parent.color(63, 127, 78)));
+		gy85x.add(new HistoryData("Filtered X-angle", 100));
+		gy85x.add(new HistoryData("Acc X-angle", 100));
 		
 		
 		panelanglehistogram = new PanelAngleHistogram(x, y+21, graphPanelWidth, 300, p, gy85x);

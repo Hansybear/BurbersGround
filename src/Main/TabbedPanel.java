@@ -80,6 +80,7 @@ public class TabbedPanel extends Panel {
 				parent.noStroke();
 				parent.rect(tabStartX, panelYPos, tabsWidth-panelMargin, tabsHeight+1, 4, 4, 0, 0);
 				parent.fill(240);
+				parent.textAlign(PConstants.LEFT, PConstants.UP);
 				parent.textSize(12);
 				parent.text(tabName, panelXPos+(i*tabsWidth)+panelMargin, panelYPos+tabsHeight/2+5);
 			}

@@ -60,11 +60,11 @@ public class MessageRecieverJob extends Job {
 				if(mainground.arduino.available()>0) {
 					  
 					  int charTest = mainground.arduino.readChar();
-					  System.out.println("GOT CHAR:" + charTest);
+					  //System.out.print(" | " + charTest);
 					  packet = mavLinkParser.mavlink_parse_char(charTest);
 					  
 					  if(packet != null) {
-						  System.out.println(packet.toString());
+						  System.out.println("MSGID" + Integer.toString(packet.msgid));
 						  mainground.comms.handlePacket(packet);
 						  
 					  }

@@ -36,6 +36,7 @@ public class Parser {
 
 			if (c == MAVLinkPacket.MAVLINK_STX) {
 				state = MAV_states.MAVLINK_PARSE_STATE_GOT_STX;
+				System.out.println();
 				System.out.println("GOT START OF MESSAGE");
 				m = new MAVLinkPacket();
 			}

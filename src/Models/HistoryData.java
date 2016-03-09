@@ -16,17 +16,15 @@ public class HistoryData {
 	private float Average;
 	private float Min;
 	private float Max;
-	private int DataColor;
-	FloatList History;
+	public FloatList History;
 	
-	public HistoryData(String label, int dataLength, int dataColor) {
+	public HistoryData(String label, int dataLength) {
 		Label = label;
 		DataLength = dataLength;
 		Sum = 0;
 		Average=0;
 		Min = 0;
 		Max = 0;
-		DataColor = dataColor;
 		History = new FloatList(DataLength);
 		for(int i=0; i<DataLength; i++) {
 			History.append(0.0f);
@@ -71,12 +69,6 @@ public class HistoryData {
 
 	public float getMax() {
 		return Max;
-	}
-	public int getDataColor() {
-		return DataColor;
-	}
-	public void setDataColor(int dataColor) {
-		this.DataColor = dataColor;
 	}
 
 }

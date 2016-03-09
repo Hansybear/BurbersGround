@@ -6,6 +6,7 @@ import Models.DataModelRepository;
 
 import com.MAVLink.MAVLinkPacket;
 import com.MAVLink.Parser;
+import com.MAVLink.common.msg_attitude;
 import com.MAVLink.common.msg_heartbeat;
 import com.MAVLink.common.msg_radio_status;
 import com.MAVLink.enums.MAV_AUTOPILOT;
@@ -156,13 +157,19 @@ public class CommandsPanel extends Panel {
 		System.out.println("MessageID: " + packet.msgid);
 		switch(packet.msgid) {
 			case msg_heartbeat.MAVLINK_MSG_ID_HEARTBEAT:
-				DataModelRepository.getInstance().getHeartBeatsData().pushIncomingHeartBeat(packet);
-				System.out.println("GOT HEARTBEAT");
+				DataModelRepository.getInstance().getHeartBeatsData().pushIncoming(packet);
+				System.out.println("HEARTBEAT");
 				break;
 			case msg_radio_status.MAVLINK_MSG_ID_RADIO_STATUS:
 				System.out.println("RadioStatus");
 				msg_radio_status radioStatus = new msg_radio_status(packet);
 				radioSettings.connectRadio(radioStatus);
+				break;
+			case msg_attitude.MAVLINK_MSG_ID_ATTITUDE:
+				System.out.println("Attitude");
+				msg_attitude message = new msg_attitude(packet);
+				System.out.println("roll: " + Float.toString(message.roll) + " pitch: " + Float.toString(message.pitch) + " yaw: " + Float.toString(message.yaw));
+				DataModelRepository.getInstance().getAttitudeData().pushIncoming(packet);	
 				break;
 		}
 		

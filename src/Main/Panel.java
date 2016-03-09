@@ -11,12 +11,12 @@ public abstract class Panel {
 	int panelHeight;
 	private int width33;
 	private int width50;
-	String panelName;
+	public String panelName;
 	public static final int panelMenuHeight = 32;
 	public static final int panelSmallMenuHeight = 30;
 	// And a position (upper left corner)
-	int panelXPos;
-	int panelYPos;
+	public int panelXPos;
+	public int panelYPos;
 	public static final int panelMargin = 10;
 	// Background color
 	int backgroundColor;
@@ -30,7 +30,7 @@ public abstract class Panel {
 	protected MainGround parent;
 	
 	
-	Panel(String name, int x, int y, int width, int height, MainGround p) {
+	protected Panel(String name, int x, int y, int width, int height, MainGround p) {
 		panelWidth = width;
 		panelHeight =height;
 		panelXPos=x;

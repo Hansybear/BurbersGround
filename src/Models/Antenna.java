@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.Arrays;
+
 import com.MAVLink.MAVLinkPacket;
 import com.MAVLink.common.msg_heartbeat;
 import com.MAVLink.common.msg_manual_control;
@@ -31,21 +33,11 @@ public class Antenna {
 		heartBeat.base_mode = MAV_MODE_FLAG.MAV_MODE_FLAG_TEST_ENABLED;
 		MAVLinkPacket mavPacket = heartBeat.pack();
 		byte[] heartBeatDebug = mavPacket.encodePacket();
-		String str = "";
-		try {
-			for(int i=0; i<heartBeatDebug.length; i++) {
-				str += "|" + Integer.toString(heartBeatDebug[i]);
-			}
-			System.out.println("MAVLINK SEND SUCCESS: " + str);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("ENCODING-ERROR (MAVLINK)");
-			e.printStackTrace();
-		}
+
 		try{
 			mainground.arduino.write(heartBeatDebug);
 			if(dataModelRepo.getHeartBeatsData() != null) {
-				dataModelRepo.getHeartBeatsData().pushOutgointHeartBeat(mavPacket);
+				dataModelRepo.getHeartBeatsData().pushOutgoint(mavPacket);
 			}
 		}catch(Exception e) {
 			System.out.println("Could not write to radio. Is it connected?");
@@ -64,11 +56,11 @@ public class Antenna {
 		byte[] manualControlDebug = packet.encodePacket();
 		String str = "";
 		try{
-			for(int i=0; i<manualControlDebug.length; i++) {
+			/*for(int i=0; i<manualControlDebug.length; i++) {
 				str += "|" + Integer.toString(manualControlDebug[i]);
-			}
+			}*/
 			mainground.arduino.write(manualControlDebug);
-			System.out.println("Mavlink send success: Manual control: " + str);
+			//System.out.println("Mavlink send success: Manual control: " + Arrays.toString(manualControlDebug));
 		}catch(Exception e) {
 			System.out.println("Manual control radio error: " + e.toString());
 		}

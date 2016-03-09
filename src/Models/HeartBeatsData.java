@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.MAVLink.MAVLinkPacket;
 import com.MAVLink.common.msg_heartbeat;
 
-public class HeartBeatsData {
+public class HeartBeatsData implements IMessageDataRepository {
 	
 	public int dataLength;
 	public ArrayList<HeartBeatLogData> outgoingMessages;
@@ -17,21 +17,21 @@ public class HeartBeatsData {
 		incomingMessages = new ArrayList<HeartBeatsData.HeartBeatLogData>();
 	}
 	
-	public void pushIncomingHeartBeat(MAVLinkPacket hb) {
+	public void pushIncoming(MAVLinkPacket hb) {
 		if(incomingMessages.size()>dataLength) {
 			incomingMessages.remove(0);
 		}
-		HeartBeatLogData logitem = new HeartBeatLogData(hb, System.nanoTime());
+		HeartBeatLogData logitem = new HeartBeatLogData(new msg_heartbeat(hb), System.nanoTime());
 		incomingMessages.add(logitem);
 	}
 	
-	public void pushOutgointHeartBeat(MAVLinkPacket hb) {
+	public void pushOutgoint(MAVLinkPacket hb) {
 		if(outgoingMessages.size()>dataLength) {
 			outgoingMessages.remove(0);
 		}
-		HeartBeatLogData logitem = new HeartBeatLogData(hb, System.nanoTime());
+		HeartBeatLogData logitem = new HeartBeatLogData(new msg_heartbeat(hb), System.nanoTime());
 		outgoingMessages.add(logitem);
-		System.out.println("Pushing outgoing data to heartbeatsdata");
+		//System.out.println("Pushing outgoing data to heartbeatsdata");
 	}
 	
 	public int getFullSetLength() {
@@ -40,10 +40,10 @@ public class HeartBeatsData {
 	
 	
 	public class HeartBeatLogData {
-		public MAVLinkPacket message;
+		public msg_heartbeat message;
 		public long timeStamp;
 		
-		public HeartBeatLogData(MAVLinkPacket message, long timeStamp) {
+		public HeartBeatLogData(msg_heartbeat message, long timeStamp) {
 			this.message = message;
 			this.timeStamp = timeStamp;
 		}

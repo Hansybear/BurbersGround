@@ -9,12 +9,14 @@ public class DataModelRepository {
 	
 	// Data
 	private HeartBeatsData heartBeatsData;
+	private AttitudeData attitudeData;
 	
 	// Instance
 	private static DataModelRepository instance = null;
 	
 	protected DataModelRepository() {
 		heartBeatsData = new HeartBeatsData(standardLength);
+		attitudeData = new AttitudeData(standardLength);
 	}
 	
 	
@@ -28,6 +30,10 @@ public class DataModelRepository {
 	
 	public HeartBeatsData getHeartBeatsData() {
 		return heartBeatsData;
+	}
+	
+	public AttitudeData getAttitudeData() {
+		return attitudeData;
 	}
 
 }
