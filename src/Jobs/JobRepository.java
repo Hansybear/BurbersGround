@@ -31,7 +31,7 @@ public class JobRepository {
    public void initMessageRecieverJob(MainGround m) {
 	   messageRecieverJob = new MessageRecieverJob("message_recieve");
 	   messageRecieverJob.setMainGround(m);
-	   messageRecieverJob.delayInMilliSeconds = 50;
+	   messageRecieverJob.delayInMilliSeconds = 0;
 	   messageRecieverJob.start();
    }
    

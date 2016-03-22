@@ -4,6 +4,7 @@ import java.awt.Window;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import jssc.SerialPort;
 import Models.Antenna;
 import Models.JoyStick;
 
@@ -30,7 +31,8 @@ public class MainGround extends PApplet {
 
   Console console;
   
-  public Serial arduino;
+  //public Serial arduino;
+  public SerialPort radioPort;
   public Antenna antenna;
   String value; // Value from raw serial read
   PFont font;
@@ -126,7 +128,9 @@ public class MainGround extends PApplet {
   }
   
 	public void connectArduino(String com) {
-		  arduino = new Serial(this, com, 57600);
+		  //arduino = new Serial(this, com, 57600);
+		radioPort = new SerialPort(com);
+		antenna.startListen();
 	} 
 	
 	public void mousePressed() {
