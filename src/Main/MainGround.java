@@ -16,54 +16,50 @@ import controlP5.ControlP5;
 import processing.core.*;
 import processing.serial.*;
 import procontroll.ControllIO;
+import settings.ApplicationSettings;
 
 
 
 public class MainGround extends PApplet {
-	
-  int averageX = 0;
-  int averageY = 0;
-  double[] angleBuffer;
   
-  
-  int initialWindowWidth = 1424;
-  int initialWindowHeight = 960;
-
-  Console console;
-  
+  // General
   //public Serial arduino;
   public SerialPort radioPort;
   public Antenna antenna;
-  String value; // Value from raw serial read
-  PFont font;
-  PFont smallFont;
-
-  HealthPanel paneltop;
-  //PanelMotors panelmotors = new PanelMotors(10, 90, 150, 150, this);
-  PanelStabilizationX panelstabilizationX;
-  GraphsPanel graphsPanel = new GraphsPanel("Graphs", 10, initialWindowHeight-300, this);
-  public CommandsPanel comms;
-  MessageSettingsPanel messageSettingsPanel;
   public ControllIO controllIO;
   public JoyStick joyStick;
+  public ControlP5 cp5;
+  
+  // GUI
+  public PFont font;
+  public PFont smallFont;
+  public PFont iconFont;
   PShape glyphIcons;
+
+  // Panels
+  HealthPanel paneltop;
+  PanelStabilizationX panelstabilizationX;
+  GraphsPanel graphsPanel = new GraphsPanel("Graphs", 10, ApplicationSettings.windowHeight-300, this);
+  public CommandsPanel comms;
+  MessageSettingsPanel messageSettingsPanel;
   List<PanelTab> settingsPanelsRight;
   List<PanelTab> messagePanels;
   JoyStickPanel joyStickPanel;
-  
   TabbedPanel avionicsPanel;
-  String buf="";
+  
+  // Mode
   public static Mode selectedMode;
   public ArrayList<String> commands;
-  public ControlP5 cp5;
+  
 
   public void setup() {
 	antenna = new Antenna(this);
 	//font = loadFont("fonts/Cambria-16.vlw");
 	font = createFont("Arial", 16);
 	smallFont = createFont("Arial", 12);
+	iconFont = createFont("GLYPHICONS Halflings Regular", 12);
 	glyphIcons = loadShape("img/glyphicons_halflings-white.svg");
-	size(initialWindowWidth, initialWindowHeight);
+	size(ApplicationSettings.windowWidth, ApplicationSettings.windowHeight);
 	smooth();
 	textFont(font);
 	cp5 = new ControlP5(this);
@@ -72,7 +68,6 @@ public class MainGround extends PApplet {
 	
 	
 	paneltop = new HealthPanel("System health", 10, 10, 600, 70, this);
-	console = new Console(this);
 	commands = new ArrayList<String>();
 	comms = new CommandsPanel("Commands", 10, 90, 300, 150, this, cp5);
 	
@@ -88,30 +83,19 @@ public class MainGround extends PApplet {
 	joyStickPanel = new JoyStickPanel("Flight Controller", 300, 90, 350, 450, this, 20,1);
 	joyStickPanel.drawPanel();
 	
-	// 4 angles for now. Buffer for angles obtained from serial communication with arduino
-	  angleBuffer = new double[4];
-	  angleBuffer[0] = 0.0;
-	  angleBuffer[1] = 0.0;
-	  angleBuffer[2] = 0.0;
-	  angleBuffer[3] = 0.0;
-	  
-	  // Prints out the available serial ports.
-	  /*arduino = new Serial(this, "COM3", 57600);
-	  arduino.bufferUntil('\n');*/
-	  
+	// Prints out the available serial ports.
 	  for(int k = 0; k<Serial.list().length; k++) {
 		  System.out.println(Serial.list()[k]);
 	  }
-	
+
   }
 
   public void draw() {
 	// Draw the main frame
-	background(0);
+	background(12);
 	// Draw tools
 	  paneltop.drawPanel();
-	  console.drawConsole();
-	  graphsPanel.drawPanel();
+	  //graphsPanel.drawPanel();
 	// Draw motor panel
 	  //panelmotors.drawPanel();
 	// Draw right side panel with settings
