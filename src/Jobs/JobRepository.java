@@ -31,18 +31,17 @@ public class JobRepository {
    public void initMessageRecieverJob(MainGround m) {
 	   messageRecieverJob = new MessageRecieverJob("message_recieve");
 	   messageRecieverJob.setMainGround(m);
-	   messageRecieverJob.delayInMilliSeconds = 0;
-	   messageRecieverJob.start();
+	   //messageRecieverJob.initialize();
    }
    
    public void initMessageRepeaterJobs(MainGround mainground) {
 	   if(!initialized) {
 		// Add heartbeat job
-		   MessageRepeaterJob heartBeatJob = new MessageRepeaterJob("HeartBeat", msg_heartbeat.MAVLINK_MSG_ID_HEARTBEAT, mainground, 1);
-		   heartBeatJob.start();
+		   //MessageRepeaterJob heartBeatJob = new MessageRepeaterJob("HeartBeat", msg_heartbeat.MAVLINK_MSG_ID_HEARTBEAT, mainground, 1);
+		   //heartBeatJob.start();
 		   this.manualControlJob = new ManualControlJob("ManualControl", mainground);
 		   
-		   messageRepeaterJobs.add(heartBeatJob);
+		   //messageRepeaterJobs.add(heartBeatJob);
 		   initialized = true;
 	   }else{
 		   System.out.println("Jobrepository is already initialized.");
@@ -90,6 +89,10 @@ public class JobRepository {
 	   System.out.println("Jobrepository is not initialized");
 	   return false;
    }*/
+
+	public void setRadioComPort(String port) {
+		messageRecieverJob.setRadioComPort(port);
+	}
 	
 
 }

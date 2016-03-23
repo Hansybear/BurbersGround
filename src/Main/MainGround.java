@@ -113,8 +113,9 @@ public class MainGround extends PApplet {
   
 	public void connectArduino(String com) {
 		  //arduino = new Serial(this, com, 57600);
-		radioPort = new SerialPort(com);
+		//radioPort = new SerialPort(com);
 		antenna.startListen();
+		antenna.setRadioComPort(com);
 	} 
 	
 	public void mousePressed() {

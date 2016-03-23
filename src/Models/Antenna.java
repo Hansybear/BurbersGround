@@ -75,6 +75,10 @@ public class Antenna {
 		
 	}
 	
+	public void setRadioComPort(String port) {
+		JobRepository.getInstance().setRadioComPort(port);
+	}
+	
 	/*public void startMessageJob(int messageId) {
 		JobRepository.getInstance().startMessageJob(messageId);
 	}
