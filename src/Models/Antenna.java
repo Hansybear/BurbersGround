@@ -20,8 +20,11 @@ public class Antenna {
 		mainground = m;
 		JobRepository.getInstance();
 		JobRepository.getInstance().initMessageRepeaterJobs(mainground);
-		JobRepository.getInstance().initMessageRecieverJob(mainground);
 		dataModelRepo = DataModelRepository.getInstance();
+	}
+	
+	public void startListen() {
+		JobRepository.getInstance().initMessageRecieverJob(mainground);
 	}
 	
 	public void send_heartbeat() {
@@ -35,7 +38,7 @@ public class Antenna {
 		byte[] heartBeatDebug = mavPacket.encodePacket();
 
 		try{
-			mainground.arduino.write(heartBeatDebug);
+			mainground.radioPort.writeBytes(heartBeatDebug);
 			if(dataModelRepo.getHeartBeatsData() != null) {
 				dataModelRepo.getHeartBeatsData().pushOutgoint(mavPacket);
 			}
@@ -59,7 +62,7 @@ public class Antenna {
 			/*for(int i=0; i<manualControlDebug.length; i++) {
 				str += "|" + Integer.toString(manualControlDebug[i]);
 			}*/
-			mainground.arduino.write(manualControlDebug);
+			mainground.radioPort.writeBytes(manualControlDebug);
 			//System.out.println("Mavlink send success: Manual control: " + Arrays.toString(manualControlDebug));
 		}catch(Exception e) {
 			System.out.println("Manual control radio error: " + e.toString());
@@ -70,6 +73,10 @@ public class Antenna {
 	public void recieve() {
 		
 		
+	}
+	
+	public void setRadioComPort(String port) {
+		JobRepository.getInstance().setRadioComPort(port);
 	}
 	
 	/*public void startMessageJob(int messageId) {

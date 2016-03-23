@@ -4,6 +4,7 @@ import java.awt.Window;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import jssc.SerialPort;
 import Models.Antenna;
 import Models.JoyStick;
 
@@ -22,7 +23,8 @@ import settings.ApplicationSettings;
 public class MainGround extends PApplet {
   
   // General
-  public Serial arduino;
+  //public Serial arduino;
+  public SerialPort radioPort;
   public Antenna antenna;
   public ControllIO controllIO;
   public JoyStick joyStick;
@@ -110,7 +112,10 @@ public class MainGround extends PApplet {
   }
   
 	public void connectArduino(String com) {
-		  arduino = new Serial(this, com, 57600);
+		  //arduino = new Serial(this, com, 57600);
+		//radioPort = new SerialPort(com);
+		antenna.startListen();
+		antenna.setRadioComPort(com);
 	} 
 	
 	public void mousePressed() {
