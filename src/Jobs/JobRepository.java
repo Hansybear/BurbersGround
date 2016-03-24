@@ -11,7 +11,7 @@ public class JobRepository {
 	private static JobRepository instance = null;
 	private static ArrayList<Job> jobs;
 	private static ArrayList<MessageRepeaterJob> messageRepeaterJobs;
-	private static MessageRecieverJob messageRecieverJob;
+	private static SerialRadioIntegration messageRecieverJob;
 	private static ManualControlJob manualControlJob;
 	private boolean initialized;
 	
@@ -29,7 +29,7 @@ public class JobRepository {
    }
    
    public void initMessageRecieverJob(MainGround m) {
-	   messageRecieverJob = new MessageRecieverJob("message_recieve");
+	   messageRecieverJob = new SerialRadioIntegration("message_recieve");
 	   messageRecieverJob.setMainGround(m);
 	   //messageRecieverJob.initialize();
    }

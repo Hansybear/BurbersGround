@@ -6,8 +6,22 @@ public class ApplicationSettings {
 	
 	public static float[] warningColor = {200, 200, 100};
 	public static float[] warningColorDark = {190, 190, 80};
-	public static int disconnectColor = 200;
-	public static int disconnectColorDark = 71;
+	public static float[] blueColorDark = {1, 132, 241};
+	public static int disconnectColor = 0;
+	public static int disconnectColorDark = 120;
+	public static float[] okColor = {50, 255, 195};
+	public static float[] okColorDark = {30, 200, 95};
+	
+	public class Keys {
+		public static final String connectedKey = "connected";
+		public static final String radioKey = "radio";
+		public static final String imuKey = "imu";
+		public static final String heartbeatKey = "heartbeat";
+	}
+	
+	public class DataCacheSettings {
+		public static final int maxMessagesInLog = 1000;
+	}
 }
 
 

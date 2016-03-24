@@ -67,17 +67,17 @@ public class MainGround extends PApplet {
 	joyStick = new JoyStick(this);
 	
 	
-	paneltop = new HealthPanel("System health", 10, 10, 600, 70, this);
+	paneltop = new HealthPanel("System health", 10, 10, this.width-2*(Panel.panelMargin), 40, this);
 	commands = new ArrayList<String>();
 	comms = new CommandsPanel("Commands", 10, 90, 300, 150, this, cp5);
 	
 	messagePanels = new ArrayList<PanelTab>();
-	messagePanels.add(new UtilityMessageSettings("Utility", 10, 10, 300, 400, this, cp5));
+	messagePanels.add(new UtilityMessageSettings("RadioStatus", 10, 10, 300, 400, this, cp5));
 	messageSettingsPanel = new MessageSettingsPanel("Message settings", 300, 30, 200, 400, this, null, messagePanels);
 	
 	panelstabilizationX = new PanelStabilizationX(this);
 	settingsPanelsRight = new ArrayList<PanelTab>();
-	settingsPanelsRight.add(new MPUSettingsPanel("MPU6050", this, 400, 400, 400, 100, cp5));
+	settingsPanelsRight.add(new IMUSettingsPanel("MPU6050", this, 400, 400, 400, 100, cp5));
 	settingsPanelsRight.add(new GY85SettingsPanel(this, cp5));
 	avionicsPanel = new TabbedPanel("Controls", 0, 90, 400, 800, this,null, settingsPanelsRight);
 	joyStickPanel = new JoyStickPanel("Flight Controller", 300, 90, 350, 450, this, 20,1);
