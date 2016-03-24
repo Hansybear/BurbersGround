@@ -163,11 +163,13 @@ public class CommandsPanel extends Panel {
 			case msg_radio_status.MAVLINK_MSG_ID_RADIO_STATUS:
 				System.out.println("RadioStatus");
 				msg_radio_status radioStatus = new msg_radio_status(packet);
+				DataModelRepository.getInstance().getDataMessageLog().addMessage(radioStatus);
 				radioSettings.connectRadio(radioStatus);
 				break;
 			case msg_attitude.MAVLINK_MSG_ID_ATTITUDE:
 				System.out.println("Attitude");
 				msg_attitude message = new msg_attitude(packet);
+				DataModelRepository.getInstance().getDataMessageLog().addMessage(message);
 				System.out.println("roll: " + Float.toString(message.roll) + " pitch: " + Float.toString(message.pitch) + " yaw: " + Float.toString(message.yaw));
 				DataModelRepository.getInstance().getAttitudeData().pushIncoming(packet);	
 				break;

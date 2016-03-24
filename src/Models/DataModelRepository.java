@@ -10,13 +10,16 @@ public class DataModelRepository {
 	// Data
 	private HeartBeatsData heartBeatsData;
 	private AttitudeData attitudeData;
-	
+	private SystemStatusData statusData;
+	private DataMessageLog dataMessageLog;
 	// Instance
 	private static DataModelRepository instance = null;
 	
 	protected DataModelRepository() {
+		statusData = new SystemStatusData();
 		heartBeatsData = new HeartBeatsData(standardLength);
 		attitudeData = new AttitudeData(standardLength);
+		dataMessageLog = new DataMessageLog();
 	}
 	
 	
@@ -27,6 +30,18 @@ public class DataModelRepository {
 	      }
 	      return instance;
    }
+	
+	public SystemStatusData getSystemStatusData() {
+		return statusData;
+	}
+	
+	public DataMessageLog getDataMessageLog() {
+		return dataMessageLog;
+	}
+	
+	public void setSystemStatusData(SystemStatusData statusData) {
+		this.statusData = statusData;
+	}
 	
 	public HeartBeatsData getHeartBeatsData() {
 		return heartBeatsData;

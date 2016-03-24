@@ -15,7 +15,6 @@ import Models.HeartBeatsData;
 public class HeartBeatMessageSettingsView extends UtilityMessageBase implements IClickableUIElement {
 
 	ControlP5 cp5;
-	HeartBeatDataView heartBeatsDataView;
 	
 	PImage testHeartBeatImage;
 	PImage testHeartBeatImageHover;
@@ -63,9 +62,7 @@ public class HeartBeatMessageSettingsView extends UtilityMessageBase implements 
 		;
 		stopHeartBeatJobImageWidth = cp5.get(stopHeartBeatJobButtonName).getWidth();
 		
-		// Create the graph with heartbeats
-		heartBeatsDataView = new HeartBeatDataView("Message log", panelXPos, panelYPos+panelMenuHeight, panelWidth, panelMenuHeight, parent);
-	}
+		}
 
 
 	@Override
@@ -77,9 +74,6 @@ public class HeartBeatMessageSettingsView extends UtilityMessageBase implements 
 		cp5.get(testHeartBeatButtonName).setPosition(x+panelMargin, y+panelMenuHeight);
 		cp5.get(stopHeartBeatJobButtonName).setPosition(x+panelWidth-stopHeartBeatJobImageWidth-panelMargin, y+panelMenuHeight);
 		
-		heartBeatsDataView.panelXPos = x;
-		heartBeatsDataView.panelYPos = y+messageHeight+panelMargin;
-		heartBeatsDataView.drawPanel();
 	}
 
 

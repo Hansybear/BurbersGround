@@ -16,11 +16,9 @@ import com.MAVLink.Parser;
 import com.MAVLink.Messages.MAVLinkMessage;
 import com.MAVLink.common.msg_heartbeat;
 
-public class MessageRecieverJob implements SerialPortEventListener, Runnable  {
+public class SerialRadioIntegration implements SerialPortEventListener, Runnable  {
 	
 	Timer timer;
-	int msgId;
-	int delayInMilliSeconds;
 	MAVLinkMessage message;
 	public MainGround mainground;
 	MAVLinkPacket packet;
@@ -33,7 +31,7 @@ public class MessageRecieverJob implements SerialPortEventListener, Runnable  {
 	private String comPortName;
 	private boolean running;
 
-	public MessageRecieverJob(String key) {
+	public SerialRadioIntegration(String key) {
 		mavLinkParser = new Parser();
 		running = false;
 		timer = new Timer();
@@ -61,15 +59,7 @@ public class MessageRecieverJob implements SerialPortEventListener, Runnable  {
 		}catch(SerialPortException serPortEx) {
 			System.out.println(serPortEx);
 		}
-		/*timer.scheduleAtFixedRate(new TimerTask() {
-			  @Override
-			  public void run() {
-				  if(running) {
-					  recieve();
-				  }  
-				  
-			  }
-			}, 0, delayInMilliSeconds);*/
+
 		readThread = new Thread(this);
 		readThread.start();
 		running = true;		
@@ -148,8 +138,6 @@ public class MessageRecieverJob implements SerialPortEventListener, Runnable  {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		System.out.println("Hello from a thread");
 		try {
 	         while (true) {
 	            // write string to port, the serialEvent will read it

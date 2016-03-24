@@ -6,7 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src/windows32"/>
-	<classpathentry kind="src" path="Mavlink"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="src/core.jar"/>
 	<classpathentry kind="lib" path="imports/jssc.jar"/>

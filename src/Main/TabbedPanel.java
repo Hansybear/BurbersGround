@@ -40,6 +40,7 @@ public class TabbedPanel extends Panel {
 		}
 		
 		parent.fill(44);
+		parent.stroke(44);
 		parent.rect(panelXPos, panelYPos+tabsHeight, panelWidth, panelHeight-tabsHeight);
 		parent.fill(200);
 		//parent.rect(panelXPos, panelYPos, panelWidth, tabsHeight);
