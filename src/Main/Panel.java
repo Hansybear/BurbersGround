@@ -19,7 +19,7 @@ public abstract class Panel {
 	public int panelYPos;
 	public static final int panelMargin = 10;
 	// Background color
-	int backgroundColor;
+	public int backgroundColor;
 	// Light background color
 	int lightBackgroundColor;
 	// Dark Background color

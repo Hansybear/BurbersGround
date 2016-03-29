@@ -12,6 +12,7 @@ import com.MAVLink.MAVLinkPacket;
 import com.MAVLink.Parser;
 import com.MAVLink.Parser.MAV_states;
 
+import Main.Views.GpsPanel;
 import controlP5.ControlP5;
 import processing.core.*;
 import processing.serial.*;
@@ -46,6 +47,7 @@ public class MainGround extends PApplet {
   List<PanelTab> messagePanels;
   JoyStickPanel joyStickPanel;
   TabbedPanel avionicsPanel;
+  GpsPanel gpsPanel;
   
   // Mode
   public static Mode selectedMode;
@@ -81,6 +83,7 @@ public class MainGround extends PApplet {
 	settingsPanelsRight.add(new GY85SettingsPanel(this, cp5));
 	avionicsPanel = new TabbedPanel("Controls", 0, 90, 400, 800, this,null, settingsPanelsRight);
 	joyStickPanel = new JoyStickPanel("Flight Controller", 300, 90, 350, 450, this, 20,1);
+	gpsPanel = new GpsPanel("GPS", Panel.panelMargin, joyStickPanel.panelYPos+joyStickPanel.getPanelHeight()+Panel.panelMargin, 200, 400, this);
 	joyStickPanel.drawPanel();
 	
 	// Prints out the available serial ports.
@@ -106,7 +109,7 @@ public class MainGround extends PApplet {
 	  messageSettingsPanel.drawPanel();
 	// Draw controller panel
 	  joyStickPanel.drawPanel();
-	  
+	  gpsPanel.drawPanel();
 	// Draw stabilizationpanel X
 	  //panelstabilizationX.drawPanelStabilizationX();
   }

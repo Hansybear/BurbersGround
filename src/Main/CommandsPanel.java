@@ -9,6 +9,7 @@ import com.MAVLink.Parser;
 import com.MAVLink.common.msg_attitude;
 import com.MAVLink.common.msg_heartbeat;
 import com.MAVLink.common.msg_radio_status;
+import com.MAVLink.common.msg_set_mode;
 import com.MAVLink.enums.MAV_AUTOPILOT;
 import com.MAVLink.enums.MAV_MODE_FLAG;
 import com.MAVLink.enums.MAV_TYPE;
@@ -17,6 +18,7 @@ import controlP5.*;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PShape;
+import settings.ApplicationSettings;
 
 
 public class CommandsPanel extends Panel {
@@ -172,6 +174,11 @@ public class CommandsPanel extends Panel {
 				DataModelRepository.getInstance().getDataMessageLog().addMessage(message);
 				System.out.println("roll: " + Float.toString(message.roll) + " pitch: " + Float.toString(message.pitch) + " yaw: " + Float.toString(message.yaw));
 				DataModelRepository.getInstance().getAttitudeData().pushIncoming(packet);	
+				break;
+			case msg_set_mode.MAVLINK_MSG_ID_SET_MODE:
+				System.out.println("Mode set");
+				msg_set_mode msg = new msg_set_mode(packet);
+				DataModelRepository.getInstance().getSystemStatusData().Statuses.replace(ApplicationSettings.Keys.modeKey, msg.custom_mode);
 				break;
 		}
 		

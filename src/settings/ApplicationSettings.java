@@ -11,12 +11,14 @@ public class ApplicationSettings {
 	public static int disconnectColorDark = 120;
 	public static float[] okColor = {50, 255, 195};
 	public static float[] okColorDark = {30, 200, 95};
+	public static String googleMapsApiKey = "AIzaSyDstYMtiWxmtYSf0ebgS0c_eQkj74M6tsc";
 	
 	public class Keys {
 		public static final String connectedKey = "connected";
 		public static final String radioKey = "radio";
 		public static final String imuKey = "imu";
 		public static final String heartbeatKey = "heartbeat";
+		public static final String modeKey = "mode";
 	}
 	
 	public class DataCacheSettings {
