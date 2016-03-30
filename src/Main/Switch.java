@@ -1,10 +1,6 @@
 package Main;
-import java.util.EventListener;
 
 import Interfaces.IClickableUIElement;
-import processing.core.PApplet;
-import processing.core.PConstants;
-import processing.core.PFont;
 import processing.core.PImage;
 
 

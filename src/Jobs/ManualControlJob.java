@@ -4,7 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import Main.MainGround;
-import Models.Antenna;
 
 public class ManualControlJob extends Job {
 

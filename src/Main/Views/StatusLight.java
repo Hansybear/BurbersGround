@@ -1,5 +1,7 @@
 package Main.Views;
 
+import processing.core.PConstants;
+import processing.core.PImage;
 import Main.MainGround;
 import settings.ApplicationSettings;
 
@@ -9,10 +11,12 @@ public class StatusLight implements Comparable<StatusLight> {
 	private int yPos;
 	private int status;
 	private int position;
-	private int width = 17;
+	private int width = 20;
 	public boolean hover;
+	public PImage hoverImage;
 	
-	public StatusLight(String charCode, int x, int y, int position)  {
+	public StatusLight(String charCode, int x, int y, int position, PImage hoverImage)  {
+		this.hoverImage = hoverImage;
 		hover = false;
 		this.position = position;
 		status = 0;
@@ -25,28 +29,29 @@ public class StatusLight implements Comparable<StatusLight> {
 		m.textFont(m.iconFont);
 		
 		if(hover) {
-			m.fill(ApplicationSettings.blueColorDark[0], ApplicationSettings.blueColorDark[1], ApplicationSettings.blueColorDark[2]);
-			m.rect(xPos, yPos, width, width, 1);
+			//m.fill(ApplicationSettings.blueColorDark[0], ApplicationSettings.blueColorDark[1], ApplicationSettings.blueColorDark[2]);
+			//m.rect(xPos, yPos, width, width, 1);
+			m.image(hoverImage, xPos, yPos);
 			m.noStroke();
 		}
 		
 		switch(status) {
 		case 0:
-			m.textAlign(m.CENTER, m.CENTER);
+			m.textAlign(PConstants.CENTER, PConstants.CENTER);
 			m.fill(ApplicationSettings.disconnectColorDark);
 			m.text(charCode, xPos+(width/2)+1, yPos+(width/2)+1);
 			m.fill(ApplicationSettings.disconnectColor);
 			m.text(charCode, xPos+(width/2), yPos+(width/2));
 			break;
 		case 2:
-			m.textAlign(m.CENTER, m.CENTER);
+			m.textAlign(PConstants.CENTER, PConstants.CENTER);
 			m.fill(ApplicationSettings.warningColor[0], ApplicationSettings.warningColor[1], ApplicationSettings.warningColor[2]);
 			m.text(charCode, xPos+(width/2)+1, yPos+(width/2)+1);
 			m.fill(ApplicationSettings.warningColorDark[0],ApplicationSettings.warningColorDark[1], ApplicationSettings.warningColorDark[2]);
 			m.text(charCode, xPos+(width/2), yPos+(width/2));
 			break;
 		case 3:
-			m.textAlign(m.CENTER, m.CENTER);
+			m.textAlign(PConstants.CENTER, PConstants.CENTER);
 			m.fill(ApplicationSettings.okColorDark[0], ApplicationSettings.okColorDark[1], ApplicationSettings.okColorDark[2]);
 			m.text(charCode, xPos+(width/2)+1, yPos+(width/2)+1);
 			m.fill(ApplicationSettings.okColor[0],ApplicationSettings.okColor[1], ApplicationSettings.okColor[2]);

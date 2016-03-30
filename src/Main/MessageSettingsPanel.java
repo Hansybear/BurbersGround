@@ -1,7 +1,6 @@
 package Main;
 import java.util.List;
 
-import processing.core.PConstants;
 
 
 public class MessageSettingsPanel extends TabbedPanel{

@@ -12,6 +12,9 @@ public class ApplicationSettings {
 	public static float[] okColor = {50, 255, 195};
 	public static float[] okColorDark = {30, 200, 95};
 	
+	public static int histogramNumberOfLines = 5;
+	public static boolean mockImuData = false;
+	
 	public class Keys {
 		public static final String connectedKey = "connected";
 		public static final String radioKey = "radio";

@@ -1,8 +1,5 @@
 package Main;
-import processing.core.PApplet;
-import procontroll.*;
 
-import java.io.*;
 
 public class JoyStickInnerPanel extends GridPanel{
 	

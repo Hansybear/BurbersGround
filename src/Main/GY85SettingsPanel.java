@@ -4,6 +4,7 @@ import java.util.List;
 
 import controlP5.ControlP5;
 import Interfaces.IClickableUIElement;
+import Main.Views.Gy85AccPanel;
 
 
 
@@ -15,16 +16,17 @@ public class GY85SettingsPanel extends PanelTab{
 	
 	private MainGround parent;
 	private List<IClickableUIElement> switches;
-	private int rowHeight;
-	
 	
 	private UIGroup basicSettingsGroup;
 	private UIGroup offsetsGroup;
 	
+	// Graph Panels
+	private int graphYPos;
+	private Gy85AccPanel gyAccPanel;
+	
 	public GY85SettingsPanel(MainGround p, ControlP5 cp5) {
 		super("GY-85", 0, 0, 400, 400, p, cp5);
 		parent = p;
-		rowHeight = 40;
 		
 		//Add switches for Basic settings:
 		switches = new ArrayList<IClickableUIElement>();
@@ -40,23 +42,24 @@ public class GY85SettingsPanel extends PanelTab{
 		
 		
 		offsetsGroup = new UIGroup(p, panelXPos+panelMargin, panelYPos+2*panelMargin+basicSettingsGroup.height, this, offsets, "Sensor Offsets");
+		graphYPos = panelYPos+2*panelMargin+basicSettingsGroup.height+offsetsGroup.height;
+		
+		// Graphs
+		gyAccPanel= new Gy85AccPanel("Gy Accelerometer", panelXPos, panelYPos+graphYPos, getPanelWidth(), 300, p, "img/process_bars.svg");
 	}
 
 	@Override
 	public void drawPanel() {
 		
 		// Update positions
-		/*for(int i=0; i<switches.size(); i++) {
-			switches.get(i).setXPos(panelXPos+panelMargin);
-			switches.get(i).setYPos(panelYPos+panelMenuHeight+panelMargin+(i*rowHeight));
-			switches.get(i).draw();
-		}*/
+		gyAccPanel.updatePosition(panelXPos, panelYPos+graphYPos);
 		
 		if(!cp5.isVisible()) {
 			cp5.show();
 		}
 		basicSettingsGroup.draw(panelXPos, panelYPos);
 		offsetsGroup.draw(panelXPos, panelYPos+panelMargin+basicSettingsGroup.height);
+		gyAccPanel.drawPanel();
 	}
 	@Override
 	public void pressEvent() {

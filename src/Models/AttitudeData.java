@@ -44,6 +44,9 @@ public class AttitudeData implements IMessageDataRepository {
 			accelerometerHistoryData.pushMpuY(message.pitch);
 			accelerometerHistoryData.pushMpuZ(message.yaw);
 		}else if(message.compid == 85) {
+			accelerometerHistoryData.pushGyX(message.roll);
+			accelerometerHistoryData.pushGyY(message.pitch);
+			accelerometerHistoryData.pushGyZ(message.yaw);
 			gyroHistoryData.pushGyX(message.rollspeed);
 			gyroHistoryData.pushGyY(message.pitchspeed);
 			gyroHistoryData.pushGyZ(message.yawspeed);

@@ -1,10 +1,6 @@
 package Main;
 import java.util.ArrayList;
 
-
-
-
-import Models.JoyStick;
 import procontroll.*;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -81,9 +77,9 @@ public class JoyStickPanel extends Panel{
 		parent.fill(255);
 		parent.textFont(parent.smallFont);
 		parent.textSize(12);
-		parent.textAlign(parent.LEFT, parent.CENTER);
+		parent.textAlign(PConstants.LEFT, PConstants.CENTER);
 		parent.text(panelName, panelXPos+panelMargin, panelYPos+(panelMenuHeight/2));
-		parent.textAlign(parent.LEFT, parent.LEFT);
+		parent.textAlign(PConstants.LEFT, PConstants.LEFT);
 		innerPanel.drawPanel();
 		if(parent.joyStick.connected) {
 			innerPanel.setPosition(parent.joyStick.GetRawX(), parent.joyStick.GetRawY());

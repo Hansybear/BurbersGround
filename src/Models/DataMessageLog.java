@@ -18,10 +18,11 @@ public class DataMessageLog {
 	}
 	
 	public void addMessage(MAVLinkMessage msg) {
+		DataModelRepository.getInstance().getSystemStatusData().Statuses.put(ApplicationSettings.Keys.connectedKey, 3);
 		if(messages.size()<maxLength) {
 			messages.add(msg);
 		}else{
-			messages.remove(messages.size()-1);
+			messages.remove(0);
 			messages.add(msg);
 		}
 	}

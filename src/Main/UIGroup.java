@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import Interfaces.IClickableUIElement;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 
 public class UIGroup {
@@ -37,22 +38,23 @@ public class UIGroup {
 		yPos = y;
 		
 		// Draw label
+		parent.textAlign(PConstants.LEFT, PConstants.TOP);
 		
-		parent.textSize(13);
+		parent.textSize(14);
 		parent.fill(0);
-		parent.text(label, xPos+panelParent.panelMargin, (yPos+4+rowHeight/2)+2);
+		parent.text(label, xPos+Panel.panelMargin, (yPos+Panel.panelMargin));
 		parent.fill(255);
-		parent.text(label, xPos+panelParent.panelMargin, (yPos+4+rowHeight/2));
+		parent.text(label, xPos+Panel.panelMargin, (yPos+Panel.panelMargin));
 		parent.textSize(10);
 		
 		for(int i=0; i<GUIelements.size(); i++) {
-			GUIelements.get(i).draw(xPos, yPos+panelParent.panelMenuHeight+(i*rowHeight));
+			GUIelements.get(i).draw(xPos, yPos+Panel.panelMenuHeight+(i*rowHeight));
 		}
 		
 		parent.stroke(0);
-		parent.line(panelParent.panelXPos+panelParent.panelMargin, yPos+panelParent.panelMargin+height, parent.width-2*panelParent.panelMargin, yPos+panelParent.panelMargin+height);
+		parent.line(panelParent.panelXPos+Panel.panelMargin, yPos+Panel.panelMargin+height, parent.width-2*Panel.panelMargin, yPos+Panel.panelMargin+height);
 		parent.stroke(71);
-		parent.line(panelParent.panelXPos+panelParent.panelMargin, 1+yPos+panelParent.panelMargin+height, parent.width-2*panelParent.panelMargin, 1+yPos+panelParent.panelMargin+height);
+		parent.line(panelParent.panelXPos+Panel.panelMargin, 1+yPos+Panel.panelMargin+height, parent.width-2*Panel.panelMargin, 1+yPos+Panel.panelMargin+height);
 		parent.stroke(0);
 		
 	}

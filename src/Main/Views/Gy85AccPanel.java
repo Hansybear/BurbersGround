@@ -4,14 +4,14 @@ import processing.core.PImage;
 import Main.MainGround;
 import Models.DataModelRepository;
 
-public class Mpu6050AccPanel extends SubPanel {
+public class Gy85AccPanel extends SubPanel {
 	
 	private HistoryDataGraph accXDataGraph;
 	private HistoryDataGraph accYDataGraph;
 	private HistoryDataGraph accZDataGraph;
 	private PImage numberField;
-
-	public Mpu6050AccPanel(String name, int x, int y, int width, int height,
+	
+	public Gy85AccPanel(String name, int x, int y, int width, int height,
 			MainGround p, String iconPath) {
 		super(name, x, y, width, height, p, iconPath);
 		numberField = p.loadImage("img/squarebox.png");
@@ -20,12 +20,13 @@ public class Mpu6050AccPanel extends SubPanel {
 		accZDataGraph = new HistoryDataGraph("Z", x+panelMargin, y+heading.getPanelHeight()+panelMenuHeight, width-(2*panelMargin), 100, p, -2, 2, numberField);
 		setPanelHeight(heading.getPanelHeight()+accXDataGraph.getPanelHeight()*3+panelMargin*3);
 	}
-
+	
+	
 	@Override
 	public void drawPanel() {
-		accXDataGraph.updateHistory(DataModelRepository.getInstance().getAttitudeData().accelerometerHistoryData.getMpuXHistoryData());
-		accYDataGraph.updateHistory(DataModelRepository.getInstance().getAttitudeData().accelerometerHistoryData.getMpuYHistoryData());
-		accZDataGraph.updateHistory(DataModelRepository.getInstance().getAttitudeData().accelerometerHistoryData.getMpuZHistoryData());
+		accXDataGraph.updateHistory(DataModelRepository.getInstance().getAttitudeData().accelerometerHistoryData.getGyXHistoryData());
+		accYDataGraph.updateHistory(DataModelRepository.getInstance().getAttitudeData().accelerometerHistoryData.getGyYHistoryData());
+		accZDataGraph.updateHistory(DataModelRepository.getInstance().getAttitudeData().accelerometerHistoryData.getGyZHistoryData());
 		heading.drawPanel();
 		accXDataGraph.drawPanel();
 		accYDataGraph.drawPanel();

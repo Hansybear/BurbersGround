@@ -1,4 +1,5 @@
 package Main;
+import processing.core.PConstants;
 import processing.core.PImage;
 import controlP5.ControlP5;
 import controlP5.Textfield;
@@ -63,9 +64,10 @@ public class UITextInputSetting implements IClickableUIElement {
 	@Override
 	public void draw(int x, int y) {
 		show();
+		mainGround.textAlign(PConstants.LEFT, PConstants.TOP);
 		mainGround.textSize(12);
 		mainGround.fill(255);
-		mainGround.text(label, x+panelParent.panelMargin, y+6);
+		mainGround.text(label, x+Panel.panelMargin, y+6);
 		cp5.get(command).setPosition(x+columnWidth, y);
 		cp5.get(command + "_button").setPosition(x+columnWidth*2+(columnWidth-buttonWidth)/2, y);
 		

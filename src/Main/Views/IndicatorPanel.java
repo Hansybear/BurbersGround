@@ -3,6 +3,7 @@ package Main.Views;
 import java.util.HashMap;
 import java.util.Map;
 
+import processing.core.PImage;
 import Main.MainGround;
 import Main.Panel;
 import Models.DataModelRepository;
@@ -11,17 +12,19 @@ import settings.ApplicationSettings;
 
 public class IndicatorPanel extends Panel {
 
-	private int iconSpacing = 18;
+	private int iconSpacing = 20;
 	private SystemStatusData statusData;
 	private Map<String, StatusLight> statusLights;
+	private PImage hoverImage;
 	public IndicatorPanel(String name, int x, int y, int width, int height, MainGround p) {
 		super(name, x, y, width, height, p);
 		statusData = DataModelRepository.getInstance().getSystemStatusData();
 		statusLights = new HashMap<String, StatusLight>();
-		statusLights.put(ApplicationSettings.Keys.radioKey, new StatusLight("\ue018", panelXPos+getPanelWidth()-panelMargin-15, panelYPos, 0));
-		statusLights.put(ApplicationSettings.Keys.heartbeatKey, new StatusLight("\ue005", panelXPos+getPanelWidth()-panelMargin-30, panelYPos, 10));
-		statusLights.put(ApplicationSettings.Keys.connectedKey, new StatusLight("\ue178", panelXPos+getPanelWidth()-panelMargin-45, panelYPos, 20));
-		statusLights.put(ApplicationSettings.Keys.imuKey, new StatusLight("\ue137", panelXPos+getPanelWidth()-panelMargin-60, panelYPos, 30));
+		hoverImage = p.loadImage("/img/20x20_hover.png");
+		statusLights.put(ApplicationSettings.Keys.radioKey, new StatusLight("\ue018", panelXPos+getPanelWidth()-panelMargin-25, panelYPos, 0, hoverImage));
+		statusLights.put(ApplicationSettings.Keys.heartbeatKey, new StatusLight("\ue005", panelXPos+getPanelWidth()-panelMargin-40, panelYPos, 10, hoverImage));
+		statusLights.put(ApplicationSettings.Keys.connectedKey, new StatusLight("\ue178", panelXPos+getPanelWidth()-panelMargin-65, panelYPos, 20, hoverImage));
+		statusLights.put(ApplicationSettings.Keys.imuKey, new StatusLight("\ue137", panelXPos+getPanelWidth()-panelMargin-70, panelYPos, 30,hoverImage));
 	}
 
 	@Override
@@ -48,7 +51,7 @@ public class IndicatorPanel extends Panel {
 		}*/
 		
 		for(StatusLight item : statusLights.values()) {
-			item.updatePosition(panelXPos+getPanelWidth()-2*panelMargin-(iconSpacing*counter), panelYPos);
+			item.updatePosition(panelXPos+getPanelWidth()-2*panelMargin-(iconSpacing*counter)-10, panelYPos);
 			counter++;
 		
 		}

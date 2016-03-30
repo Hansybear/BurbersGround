@@ -1,16 +1,11 @@
 package Main;
 import java.util.List;
-import java.awt.Window;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import jssc.SerialPort;
 import Models.Antenna;
 import Models.JoyStick;
 
-import com.MAVLink.MAVLinkPacket;
-import com.MAVLink.Parser;
-import com.MAVLink.Parser.MAV_states;
 
 import controlP5.ControlP5;
 import processing.core.*;

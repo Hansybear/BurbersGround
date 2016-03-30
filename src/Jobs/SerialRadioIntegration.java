@@ -1,9 +1,7 @@
 package Jobs;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import jssc.SerialPort;
 import jssc.SerialPortEvent;
@@ -22,7 +20,7 @@ public class SerialRadioIntegration implements SerialPortEventListener, Runnable
 	MAVLinkMessage message;
 	public MainGround mainground;
 	MAVLinkPacket packet;
-	boolean debugRadioRecieve = true;
+	boolean debugRadioRecieve = false;
 	Parser mavLinkParser;
 	InputStream inputStream;
     SerialPort serialPort;
@@ -97,7 +95,6 @@ public class SerialRadioIntegration implements SerialPortEventListener, Runnable
 		
 		if(serialPortEvent.isRXCHAR()){
 	        try {
-	        	System.out.println("In buffer: " + serialPort.getInputBufferBytesCount());
 	        	buffer = serialPort.readIntArray();// Read many bytes
 	        	//String str = new String(buffer);
 	        	//char character = str.charAt(0);

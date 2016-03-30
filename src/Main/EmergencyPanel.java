@@ -1,5 +1,6 @@
 package Main;
 
+import processing.core.PConstants;
 import processing.core.PImage;
 
 public class EmergencyPanel extends Panel {
@@ -23,11 +24,11 @@ public class EmergencyPanel extends Panel {
 	@Override
 	public void drawPanel() {
 		parent.color(255, 255, 255);
-		parent.textAlign(parent.LEFT, parent.CENTER);
+		parent.textAlign(PConstants.LEFT, PConstants.CENTER);
 		parent.text("Emergency", panelXPos+panelMargin, panelYPos+panelMenuHeight/2);
 		parent.cp5.get(stopButtonName)
 		.setPosition(panelXPos+panelMargin, panelYPos+panelMenuHeight);
-		parent.textAlign(parent.LEFT, parent.LEFT);
+		parent.textAlign(PConstants.LEFT, PConstants.LEFT);
 		
 		
 	}

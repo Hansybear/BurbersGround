@@ -27,7 +27,7 @@ public class HealthPanel extends Panel {
 	}
 	
 	public void mousePressed() {
-		emergencyPanel.mousePressed();
+		//emergencyPanel.mousePressed();
 	}
 	
   
