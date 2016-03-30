@@ -127,6 +127,7 @@ public class MainGround extends PApplet {
 		joyStickPanel.mousePressed();
 		messageSettingsPanel.mousePressed();
 		paneltop.mousePressed();
+		gpsPanel.mousePressed();
 	}
   
 	public void addCommand(String command) {
