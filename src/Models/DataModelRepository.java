@@ -12,6 +12,7 @@ public class DataModelRepository {
 	private AttitudeData attitudeData;
 	private SystemStatusData statusData;
 	private DataMessageLog dataMessageLog;
+	private GpsData gpsData;
 	// Instance
 	private static DataModelRepository instance = null;
 	
@@ -20,6 +21,7 @@ public class DataModelRepository {
 		heartBeatsData = new HeartBeatsData(standardLength);
 		attitudeData = new AttitudeData(standardLength);
 		dataMessageLog = new DataMessageLog();
+		gpsData = new GpsData();
 	}
 	
 	
@@ -49,6 +51,10 @@ public class DataModelRepository {
 	
 	public AttitudeData getAttitudeData() {
 		return attitudeData;
+	}
+	
+	public GpsData getGpsData() {
+		return gpsData;
 	}
 
 }

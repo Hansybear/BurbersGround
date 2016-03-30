@@ -1,7 +1,11 @@
 package Main;
 
 public enum Mode {
+	DISCONNECTED,
    DEBUG,
+   GROUNDIDLE,
+   AUTOHOVER,
    FLY,
-   MODE3
+   MANUAL,
+   LAND
 }
